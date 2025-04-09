@@ -2,43 +2,11 @@ import { Button } from "@/components/ui/button";
 import {
 	Card,
 	CardContent,
-	CardDescription,
 	CardHeader,
 	CardTitle,
+	CardDescription,
 } from "@/components/ui/card";
 import { Difficulty } from "@/types/game";
-
-type DifficultyOption = {
-	value: Difficulty;
-	label: string;
-	description: string;
-	powerUps: number;
-};
-
-const difficultyOptions: DifficultyOption[] = [
-	{
-		value: "easy",
-		label: "Fácil",
-		description: "3 comodines disponibles",
-		powerUps: 3,
-	},
-	{
-		value: "medium",
-		label: "Medio",
-		description: "2 comodines disponibles",
-		powerUps: 2,
-	},
-	{
-		value: "hard",
-		label: "Difícil",
-		description: "1 comodín disponible",
-		powerUps: 1,
-	},
-];
-
-type DifficultySelectorProps = {
-	onSelect: (difficulty: Difficulty) => void;
-};
 
 export function DifficultySelector({
 	onSelect,

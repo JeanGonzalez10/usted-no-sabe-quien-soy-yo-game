@@ -14,13 +14,6 @@ import { DifficultySelector } from "@/components/difficulty-selector";
 
 const Confetti = dynamic(() => import("react-confetti"), { ssr: false });
 
-const powerUpLabels: Record<string, string> = {
-	category: "Categoría",
-	letterCount: "Cantidad de letras",
-	hints: "Pistas",
-	image: "Imagen",
-};
-
 export default function Game() {
 	const [windowSize, setWindowSize] = useState({
 		width: typeof window !== "undefined" ? window.innerWidth : 0,

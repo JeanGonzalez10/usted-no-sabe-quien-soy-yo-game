@@ -8,32 +8,6 @@ import {
 } from "@/components/ui/card";
 import { PowerUp, PowerUpState } from "@/types/game";
 
-type PowerUpButtonProps = {
-	label: string;
-	used: boolean;
-	remaining: number;
-	onClick: () => void;
-	disabled?: boolean;
-};
-
-function PowerUpButton({
-	label,
-	used,
-	remaining,
-	onClick,
-	disabled,
-}: PowerUpButtonProps) {
-	return (
-		<Button
-			variant={used ? "outline" : "default"}
-			className={`w-full ${used ? "opacity-50" : ""}`}
-			onClick={onClick}
-			disabled={used || disabled || remaining === 0}>
-			{label}
-		</Button>
-	);
-}
-
 type PowerUpsProps = {
 	powerUps: PowerUpState;
 	remainingPowerUps: number;
