@@ -1,16 +1,37 @@
-export type Hint = {
-	text: string;
-	imageRevealPercentage: number;
+export type Difficulty = "easy" | "medium" | "hard";
+
+export type PowerUp = "category" | "letterCount" | "hints" | "image";
+
+export type PowerUpState = {
+	category: boolean;
+	letterCount: boolean;
+	hints: number;
+	image: boolean;
 };
 
 export type GameState = {
-	currentCharacter: {
-		name: string;
-		hints: Hint[];
-		imageUrl: string;
-	};
-	hints: Hint[];
-	attempts: string[];
+	currentCharacter: Character | null;
 	gameStatus: "playing" | "won" | "lost";
-	revealedHints: Hint[];
+	attempts: number;
+	maxAttempts: number;
+	revealedHints: number[];
+	difficulty: Difficulty;
+	powerUps: PowerUpState;
+	remainingPowerUps: number;
+	letterCount: number | null;
+	letterPositions: boolean[];
+};
+
+export type Character = {
+	id: string;
+	name: string;
+	category: string;
+	hints: Hint[];
+	imageUrl: string;
+};
+
+export type Hint = {
+	id: string;
+	text: string;
+	imageRevealPercentage: number;
 };

@@ -1,58 +1,73 @@
-import { Character } from "@/types/character";
+import { Character } from "@/types/game";
 
 export const characters: Character[] = [
 	{
+		id: "don-quijote",
 		name: "Don Quijote",
+		category: "Novela de caballerías",
+		hints: [
+			{
+				id: "hint-1",
+				text: "Soy un caballero andante que lucha contra molinos de viento",
+				imageRevealPercentage: 33,
+			},
+			{
+				id: "hint-2",
+				text: "Mi escudero se llama Sancho Panza",
+				imageRevealPercentage: 66,
+			},
+			{
+				id: "hint-3",
+				text: "Mi nombre completo es Alonso Quijano",
+				imageRevealPercentage: 100,
+			},
+		],
 		imageUrl: "/images/don-quijote.jpg",
-		hints: [
-			{
-				text: "Soy un caballero andante que lucha contra molinos de viento.",
-				imageRevealPercentage: 20,
-			},
-			{
-				text: "Mi fiel escudero se llama Sancho Panza.",
-				imageRevealPercentage: 40,
-			},
-			{
-				text: "Mi amada se llama Dulcinea del Toboso.",
-				imageRevealPercentage: 60,
-			},
-		],
 	},
 	{
+		id: "hamlet",
 		name: "Hamlet",
-		imageUrl: "/images/hamlet.jpg",
+		category: "Tragedia",
 		hints: [
 			{
-				text: "Soy el príncipe de Dinamarca.",
-				imageRevealPercentage: 20,
+				id: "hint-1",
+				text: "Soy un príncipe de Dinamarca que busca venganza",
+				imageRevealPercentage: 33,
 			},
 			{
-				text: "Mi padre fue asesinado por mi tío.",
-				imageRevealPercentage: 40,
+				id: "hint-2",
+				text: "Mi padre fue asesinado por mi tío, quien se casó con mi madre",
+				imageRevealPercentage: 66,
 			},
 			{
-				text: "Famosa es mi duda sobre ser o no ser.",
-				imageRevealPercentage: 60,
+				id: "hint-3",
+				text: "Mi famosa frase es 'Ser o no ser, esa es la cuestión'",
+				imageRevealPercentage: 100,
 			},
 		],
+		imageUrl: "/images/hamlet.jpg",
 	},
 	{
-		name: "Romeo y Julieta",
-		imageUrl: "/images/romeo-y-julieta.jpg",
+		id: "romeo",
+		name: "Romeo",
+		category: "Tragedia romántica",
 		hints: [
 			{
-				text: "Soy un joven de la familia Montesco.",
-				imageRevealPercentage: 20,
+				id: "hint-1",
+				text: "Soy un joven de Verona que se enamora perdidamente",
+				imageRevealPercentage: 33,
 			},
 			{
-				text: "Mi amor es de la familia Capuleto.",
-				imageRevealPercentage: 40,
+				id: "hint-2",
+				text: "Mi amada pertenece a una familia enemiga de la mía",
+				imageRevealPercentage: 66,
 			},
 			{
-				text: "Mi historia termina en tragedia.",
-				imageRevealPercentage: 60,
+				id: "hint-3",
+				text: "Mi historia termina en una tragedia junto a mi amada Julieta",
+				imageRevealPercentage: 100,
 			},
 		],
+		imageUrl: "/images/romeo.jpg",
 	},
 ];
