@@ -22,19 +22,20 @@ export function DifficultySelector({
 						Fácil
 					</CardTitle>
 					<CardDescription className="text-xl text-center">
-						3 power-ups disponibles
+						3 comodines disponibles
 					</CardDescription>
 				</CardHeader>
 				<CardContent>
 					<div className="space-y-4">
 						<ul className="space-y-4 text-xl">
-							<li className="flex items-center gap-2">✓ Pistas ilimitadas</li>
+							<li className="flex items-center gap-2">✓ Pistas</li>
 							<li className="flex items-center gap-2">
 								✓ Revelar cantidad de letras
 							</li>
 							<li className="flex items-center gap-2">
-								✓ Revelar imagen gradualmente
+								✓ Revelar imagen parcialmente
 							</li>
+							<li className="flex items-center gap-2">✓ Revelar categoría</li>
 						</ul>
 						<Button
 							onClick={() => onSelect("easy")}
@@ -53,19 +54,20 @@ export function DifficultySelector({
 						Medio
 					</CardTitle>
 					<CardDescription className="text-xl text-center">
-						2 power-ups disponibles
+						2 comodines disponibles
 					</CardDescription>
 				</CardHeader>
 				<CardContent>
 					<div className="space-y-4">
 						<ul className="space-y-4 text-xl">
-							<li className="flex items-center gap-2">✓ Pistas limitadas</li>
+							<li className="flex items-center gap-2">✓ Pistas</li>
 							<li className="flex items-center gap-2">
 								✓ Revelar cantidad de letras
 							</li>
 							<li className="flex items-center gap-2">
 								✓ Revelar imagen parcialmente
 							</li>
+							<li className="flex items-center gap-2">✓ Revelar categoría</li>
 						</ul>
 						<Button
 							onClick={() => onSelect("medium")}
@@ -84,20 +86,23 @@ export function DifficultySelector({
 						Difícil
 					</CardTitle>
 					<CardDescription className="text-xl text-center">
-						1 power-up disponible
+						1 comodín disponible
 					</CardDescription>
 				</CardHeader>
 				<CardContent>
 					<div className="space-y-4">
 						<ul className="space-y-4 text-xl">
 							<li className="flex items-center gap-2">
-								✓ Pistas muy limitadas
+								✓ Pistas
 							</li>
 							<li className="flex items-center gap-2">
-								✕ Sin cantidad de letras
+								✕ Revelar cantidad de letras
 							</li>
 							<li className="flex items-center gap-2">
-								✓ Imagen siempre borrosa
+								✓ Revelar imagen borrosa
+							</li>
+							<li className="flex items-center gap-2">
+								✓ Revelar categoría
 							</li>
 						</ul>
 						<Button

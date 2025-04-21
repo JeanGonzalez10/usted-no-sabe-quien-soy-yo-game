@@ -210,7 +210,7 @@ export default function Game() {
 		: 20;
 
 	return (
-		<main className="min-h-screen bg-[url('/paper-texture.jpg')] bg-cover bg-center bg-no-repeat">
+		<main className="min-h-screen bg-[url('/paper-texture.jpg')] bg-cover bg-center bg-no-repeat pb-24">
 			<div className="absolute inset-0 bg-gradient-to-b from-parchment-50/90 to-parchment-100/90" />
 
 			<div className="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -227,7 +227,7 @@ export default function Game() {
 				<div className="space-y-12">
 					<div>
 						<h1 className="text-7xl font-bold text-ink-900 font-crimson text-center mb-6">
-							Descubre el Personaje
+							¿Usted no sabe quién soy yo?
 						</h1>
 					</div>
 

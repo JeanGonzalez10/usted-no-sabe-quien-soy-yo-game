@@ -14,7 +14,7 @@ import Link from "next/link";
 
 export default function Home() {
 	return (
-		<main className="min-h-screen bg-[url('/paper-texture.jpg')] bg-cover bg-center bg-no-repeat">
+		<main className="min-h-screen bg-[url('/paper-texture.jpg')] bg-cover bg-center bg-no-repeat pb-24">
 			<div className="absolute inset-0 bg-gradient-to-b from-[#faf9f6]/80 to-[#eae6e0]/90" />
 
 			<div className="relative mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
@@ -24,15 +24,14 @@ export default function Home() {
 					transition={{ duration: 0.8 }}
 					className="text-center space-y-8">
 					<h1 className="text-6xl font-bold text-[#723520] sm:text-7xl md:text-8xl font-crimson drop-shadow-lg">
-						Descubre el Clásico
+						¿Usted no sabe quién soy yo?
 					</h1>
 					<motion.p
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.8, delay: 0.3 }}
 						className="text-2xl text-[#8c3d22] max-w-2xl mx-auto font-crimson italic">
-						Sumérgete en el mundo de la literatura clásica y pon a prueba tus
-						conocimientos.
+						Pon a prueba tus conocimientos sobre personajes famosos
 					</motion.p>
 				</motion.div>
 
