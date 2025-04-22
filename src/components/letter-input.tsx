@@ -7,7 +7,6 @@ type LetterInputProps = {
 	value: string;
 	onChange: (value: string) => void;
 	onSubmit: (value: string) => void;
-	onActivateLetterCount?: () => void;
 	disabled?: boolean;
 };
 
@@ -16,49 +15,26 @@ export function LetterInput({
 	value,
 	onChange,
 	onSubmit,
-	onActivateLetterCount,
 	disabled,
 }: LetterInputProps) {
 	if (!letterCount) {
 		return (
-			<div className="space-y-4">
+			<div className="relative w-full">
+				<Input
+					type="text"
+					value={value}
+					onChange={(e) => onChange(e.target.value)}
+					disabled={disabled}
+					className="w-full font-crimson text-xl py-3 px-4 bg-parchment-50 border-2 border-sepia-300 focus:border-sepia-400 focus:ring-sepia-400 placeholder:text-sepia-400/50"
+					placeholder="¿Qué personaje será...?"
+				/>
 				<Button
 					variant="ghost"
-					onClick={onActivateLetterCount}
-					disabled={disabled}
-					className="w-fit text-center text-sepia-600 text-lg italic group">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						fill="none"
-						viewBox="0 0 24 24"
-						strokeWidth="1.5"
-						stroke="currentColor"
-						className="w-6 h-6 group-hover:text-green-500">
-						<path
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12"
-						/>
-					</svg>
-					Revelar Cantidad de letras
+					onClick={() => onSubmit(value)}
+					disabled={disabled || !value}
+					className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-sepia-600 hover:bg-sepia-700 text-parchment-50">
+					Adivinar
 				</Button>
-				<div className="relative w-full">
-					<Input
-						type="text"
-						value={value}
-						onChange={(e) => onChange(e.target.value)}
-						disabled={disabled}
-						className="w-full font-crimson text-xl py-3 px-4 bg-parchment-50 border-2 border-sepia-300 focus:border-sepia-400 focus:ring-sepia-400 placeholder:text-sepia-400/50"
-						placeholder="¿Qué personaje será...?"
-					/>
-					<Button
-						variant="ghost"
-						onClick={() => onSubmit(value)}
-						disabled={disabled || !value}
-						className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-sepia-600 hover:bg-sepia-700 text-parchment-50">
-						Adivinar
-					</Button>
-				</div>
 			</div>
 		);
 	}

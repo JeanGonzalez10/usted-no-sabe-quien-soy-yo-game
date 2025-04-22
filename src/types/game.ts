@@ -33,5 +33,4 @@ export type Character = {
 export type Hint = {
 	id: string;
 	text: string;
-	imageRevealPercentage: number;
 };

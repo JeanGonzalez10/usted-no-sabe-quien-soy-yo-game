@@ -51,6 +51,7 @@ export default function Game() {
 		letterPositions: [],
 	});
 	const [inputValue, setInputValue] = useState("");
+	const [isHovering, setIsHovering] = useState(false);
 
 	const handleDifficultySelect = (selectedDifficulty: Difficulty) => {
 		const powerUpsCount = {
@@ -181,6 +182,20 @@ export default function Game() {
 		}));
 	};
 
+	const getBlurAmount = () => {
+		if (!gameState.powerUps.image || !gameState.currentCharacter) return 0;
+
+		const baseBlur = {
+			easy: 5,
+			medium: 10,
+			hard: 35,
+		}[difficulty ?? "easy"];
+
+		return baseBlur;
+	};
+
+	const blurAmount = getBlurAmount();
+
 	if (!difficulty) {
 		return (
 			<div className="container mx-auto px-4 py-8">
@@ -196,18 +211,6 @@ export default function Game() {
 		selectRandomCharacter();
 		return null;
 	}
-
-	const currentRevealPercentage =
-		gameState.revealedHints.length > 0
-			? gameState.currentCharacter.hints[gameState.revealedHints.length - 1]
-					.imageRevealPercentage
-			: 0;
-
-	const blurAmount = gameState.powerUps.image
-		? difficulty === "hard"
-			? 20
-			: Math.max(20 - (currentRevealPercentage * 20) / 100, 0)
-		: 20;
 
 	return (
 		<main className="min-h-screen bg-[url('/paper-texture.jpg')] bg-cover bg-center bg-no-repeat pb-24">
@@ -277,17 +280,39 @@ export default function Game() {
 							</Card>
 
 							{/* Espacio para la imagen */}
-							<Card className="transform transition-all duration-300 hover:shadow-xl overflow-hidden">
+							<Card
+								className="transform transition-all duration-300 hover:shadow-xl overflow-hidden relative group cursor-pointer"
+								onClick={() =>
+									!gameState.powerUps.image && handlePowerUpUse("image")
+								}
+								onMouseEnter={() => setIsHovering(true)}
+								onMouseLeave={() => setIsHovering(false)}>
 								<div className="relative aspect-[16/9] w-full">
 									<Image
-										src={gameState.currentCharacter.imageUrl}
+										src={
+											gameState.powerUps.image
+												? gameState.currentCharacter.imageUrl
+												: "/images/guess.png"
+										}
 										alt="Personaje misterioso"
 										fill
-										className="object-cover transition-all duration-500"
+										sizes="(max-width: 1024px) 100vw, 66vw"
+										className={`object-contain bg-black ${
+											!gameState.powerUps.image && "group-hover:opacity-75"
+										}`}
 										style={{
-											filter: `blur(${blurAmount}px)`,
+											filter: gameState.powerUps.image
+												? `blur(${blurAmount}px)`
+												: "none",
 										}}
 									/>
+									{!gameState.powerUps.image && isHovering && (
+										<div className="absolute inset-0 flex items-center justify-center">
+											<span className="bg-black/50 text-white px-4 py-2 rounded-lg text-lg font-medium">
+												Revelar imagen
+											</span>
+										</div>
+									)}
 								</div>
 							</Card>
 
@@ -295,13 +320,58 @@ export default function Game() {
 							<Card className="transform transition-all duration-300 hover:shadow-xl">
 								<CardContent className="pt-6">
 									<div className="space-y-4">
-										<div className="flex items-center gap-4">
-											{gameState.powerUps.letterCount && (
-												<span className="text-xl font-semibold text-primary-700">
-													Cantidad de letras:{" "}
-													{gameState.currentCharacter.name.length} letras
+										<div className="flex items-center justify-between">
+											<div className="flex items-center gap-4">
+												{gameState.powerUps.letterCount && (
+													<span className="text-xl font-semibold text-primary-700">
+														Cantidad de letras:{" "}
+														{gameState.currentCharacter.name.length} letras
+													</span>
+												)}
+												{!gameState.powerUps.letterCount && (
+													<Button
+														variant="ghost"
+														onClick={() => handlePowerUpUse("letterCount")}
+														disabled={
+															gameState.remainingPowerUps === 0 ||
+															difficulty === "hard"
+														}
+														className="w-fit text-left text-sepia-800 p-4 rounded-lg flex items-center gap-2 italic group">
+														<svg
+															xmlns="http://www.w3.org/2000/svg"
+															fill="none"
+															viewBox="0 0 24 24"
+															strokeWidth="1.5"
+															stroke="currentColor"
+															className="w-6 h-6 group-hover:text-green-500">
+															<path
+																strokeLinecap="round"
+																strokeLinejoin="round"
+																d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12"
+															/>
+														</svg>
+														Revelar cantidad de letras
+													</Button>
+												)}
+											</div>
+											<div className="flex items-center gap-2">
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													fill="none"
+													viewBox="0 0 24 24"
+													strokeWidth={1.5}
+													stroke="currentColor"
+													className="w-6 h-6 text-red-500">
+													<path
+														strokeLinecap="round"
+														strokeLinejoin="round"
+														d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"
+													/>
+												</svg>
+												<span className="text-xl font-semibold text-red-500">
+													{gameState.attempts}/{gameState.maxAttempts} intentos
 												</span>
-											)}
+											</div>
 										</div>
 
 										<LetterInput
@@ -309,9 +379,6 @@ export default function Game() {
 											value={inputValue}
 											onChange={handleGuess}
 											onSubmit={handleSubmitGuess}
-											onActivateLetterCount={() =>
-												handlePowerUpUse("letterCount")
-											}
 											disabled={gameState.gameStatus !== "playing"}
 										/>
 									</div>
@@ -420,7 +487,6 @@ export default function Game() {
 												return value === true;
 											})
 											.map(([usedPowerUp, value]) => {
-												// Si es una pista, mostrar múltiples entradas según cuántas pistas se han usado
 												if (usedPowerUp === "hints") {
 													const hintsUsed = 3 - (value as number);
 													return Array.from({ length: hintsUsed }).map(
@@ -447,7 +513,6 @@ export default function Game() {
 													);
 												}
 
-												// Para otros comodines, mostrar como antes
 												return (
 													<div
 														key={usedPowerUp}
