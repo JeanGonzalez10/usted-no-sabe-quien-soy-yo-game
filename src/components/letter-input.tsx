@@ -25,14 +25,14 @@ export function LetterInput({
 					value={value}
 					onChange={(e) => onChange(e.target.value)}
 					disabled={disabled}
-					className="w-full font-crimson text-xl py-3 px-4 bg-parchment-50 border-2 border-sepia-300 focus:border-sepia-400 focus:ring-sepia-400 placeholder:text-sepia-400/50"
+					className="w-full font-crimson text-base sm:text-lg md:text-xl py-2 sm:py-3 px-3 sm:px-4 bg-parchment-50 border-2 border-sepia-300 focus:border-sepia-400 focus:ring-sepia-400 placeholder:text-sepia-400/50"
 					placeholder="¿Qué personaje será...?"
 				/>
 				<Button
 					variant="ghost"
 					onClick={() => onSubmit(value)}
 					disabled={disabled || !value}
-					className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-sepia-600 hover:bg-sepia-700 text-parchment-50">
+					className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-sepia-600 hover:bg-sepia-700 text-parchment-50 text-xs sm:text-sm md:text-base px-2 sm:px-3">
 					Adivinar
 				</Button>
 			</div>
@@ -40,13 +40,13 @@ export function LetterInput({
 	}
 
 	return (
-		<div className="space-y-4">
-			<div className="flex gap-2 items-center justify-center">
+		<div className="space-y-3 md:space-y-4">
+			<div className="flex flex-wrap gap-1 sm:gap-2 items-center justify-center">
 				{Array.from({ length: letterCount }).map((_, index) => (
 					<div
 						key={index}
 						className={cn(
-							"w-8 h-12 border-b-2 border-primary flex items-center justify-center text-2xl font-bold"
+							"w-6 sm:w-7 md:w-8 h-9 sm:h-10 md:h-12 border-b-2 border-primary flex items-center justify-center text-base sm:text-xl md:text-2xl font-bold"
 						)}>
 						<input
 							type="text"
@@ -80,11 +80,12 @@ export function LetterInput({
 						/>
 					</div>
 				))}
-			</div>
+			</div>{" "}
 			<div className="flex justify-center">
 				<Button
 					onClick={() => onSubmit(value)}
-					disabled={disabled || value.length !== letterCount}>
+					disabled={disabled || value.length !== letterCount}
+					className="text-sm sm:text-base">
 					Adivinar
 				</Button>
 			</div>

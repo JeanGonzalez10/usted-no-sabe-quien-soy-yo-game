@@ -23,7 +23,7 @@ export default function RootLayout({
 		<html lang="es">
 			<body className={crimsonText.className}>
 				{children}
-				<footer className="fixed bottom-0 w-full bg-[#faf9f6]/80 backdrop-blur-sm border-t border-[#eae6e0] py-4">
+				<footer className="bottom-0 w-full bg-[#faf9f6]/80 backdrop-blur-sm border-t border-[#eae6e0] py-4">
 					<div className="container mx-auto px-4 flex justify-center items-center gap-4">
 						<span className="text-[#723520] font-crimson">
 							Desarrollado por: Jean Carlos Gonzalez Goyeneche
